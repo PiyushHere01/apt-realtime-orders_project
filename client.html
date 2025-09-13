@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Real-time Orders Updates</title>
+</head>
+<body>
+  <h2>Orders Updates</h2>
+  <ul id="orders"></ul>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io("http://localhost:3000");
+
+    socket.on("order_update", (data) => {
+      const li = document.createElement("li");
+      li.textContent = JSON.stringify(data);
+      document.getElementById("orders").appendChild(li);
+    });
+  </script>
+</body>
+</html>
